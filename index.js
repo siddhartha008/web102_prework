@@ -171,7 +171,7 @@ console.log(numOfUnfundedGames);
 
 let fundedGames = GAMES_JSON.filter((game)=>game.pledged >= game.goal);
 // create a string that explains the number of unfunded games using the ternary operator
-const displayStr = `A total of $${raisedAmt.toLocaleString(('en-US'))} has been raised for ${fundedGames.length} games. ${numOfUnfundedGames === 0 
+const displayStr = `A total of $${raisedAmt.toLocaleString(('en-US'))} has been raised for ${GAMES_JSON.length} games. ${numOfUnfundedGames === 0 
         ? 'All games are funded.' 
         : `Currently, ${numOfUnfundedGames == 1 ? 'game remains unfunded.' : `${numOfUnfundedGames} games remain unfunded.`} We need your help to fund these amazing games!`}`
 console.log(displayStr);

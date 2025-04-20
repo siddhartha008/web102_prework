@@ -24,7 +24,8 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented features:
 
-<img src='https://imgur.com/a/sid-prework-ihfNtHS' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<!-- <img src='https://imgur.com/a/sid-prework-ihfNtHS' title='Video Walkthrough' width='' alt='Video Walkthrough' /> -->
+![Video Walkthrough](https://imgur.com/a/sid-prework-ihfNtHS)
 GIF created with GetKap (https://getkap.co/)
 
 ## Notes

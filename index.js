@@ -40,7 +40,13 @@ function addGamesToPage(games) {
             <img src="${games[i].img}" class="game-img" />
             <h3>${games[i].name}</h3>
             <p>${games[i].description}</p>
-            <p>Backers: ${games[i].backers}</p>
+            <p>Backed by: ${games[i].backers}</p>
+            <br>
+            <progress id="file" value="${(games[i].pledged)}" max="${games[i].goal}"></progress>
+            <p><u> ${games[i].pledged >= games[i].goal ? "Goal Met!" : "In Progress"} </u> </p>
+            <p>Pledged: $${(games[i].pledged).toLocaleString(('en-US'))}</p>
+            <p>Goal: $${(games[i].goal).toLocaleString(('en-US'))}</p>
+           
         `; 
         // append the game to the games-container
         gamesContainer.appendChild(createdDiv);
@@ -73,7 +79,7 @@ console.log(backersNum);
 
 
 // set the inner HTML using a template literal and toLocaleString to get a number with commas
-contributionsCard.innerHTML=backersNum.toLocaleString(('en-US'));
+contributionsCard.innerHTML= `${backersNum.toLocaleString(('en-US'))}`;
 
 // grab the amount raised card, then use reduce() to find the total amount raised
 const raisedCard = document.getElementById("total-raised");
@@ -192,13 +198,13 @@ const sortedGames =  GAMES_JSON.sort( (item1, item2) => {
 let [first,second] = sortedGames;
 
 // create a new element to hold the name of the top pledge game, then append it to the correct element
-let topPledgeHeading = document.createElement('h2');
-topPledgeHeading.innerHTML = first.name;
+let topPledgeHeading = document.createElement('h3');
+topPledgeHeading.innerHTML = first.name + "- $" + first.pledged.toLocaleString(('en-US'));
 firstGameContainer.appendChild(topPledgeHeading);
 
 // do the same for the runner up item
-let secondPledgeHeading = document.createElement('h2');
-secondPledgeHeading.innerHTML = second.name;
+let secondPledgeHeading = document.createElement('h3');
+secondPledgeHeading.innerHTML = second.name + "- $" + second.pledged.toLocaleString(('en-US'));
 secondGameContainer.append(secondPledgeHeading);
 
 //adding custom sorting features

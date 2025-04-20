@@ -9,6 +9,7 @@ import GAMES_DATA from './games.js';
 
 // create a list of objects to store the data about the games using JSON.parse
 const GAMES_JSON = JSON.parse(GAMES_DATA)
+let currentGamesList = [...GAMES_JSON]; 
 
 // remove all child elements from a parent element in the DOM
 function deleteChildElements(parent) {
@@ -48,7 +49,7 @@ function addGamesToPage(games) {
 
 // call the function we just defined using the correct variable
 // later, we'll call this function using a different list of games
-addGamesToPage(GAMES_JSON);
+addGamesToPage(currentGamesList);
 
 /*************************************************************************************
  * Challenge 4: Create the summary statistics at the top of the page displaying the
@@ -108,7 +109,8 @@ function filterUnfundedOnly() {
     })
     console.log(unfundedGames);
     // use the function we previously created to add the unfunded games to the DOM
-    addGamesToPage(unfundedGames);
+    currentGamesList = unfundedGames;
+    addGamesToPage(currentGamesList);
 }
 
 
@@ -122,7 +124,8 @@ function filterFundedOnly() {
     })
     console.log(fundedGames);
     // use the function we previously created to add unfunded games to the DOM
-    addGamesToPage(fundedGames);
+    currentGamesList = fundedGames;
+    addGamesToPage(currentGamesList);
 }
 
 
@@ -131,9 +134,8 @@ function showAllGames() {
     deleteChildElements(gamesContainer);
 
     // add all games from the JSON data to the DOM
-    let allGames = GAMES_JSON; 
-    addGamesToPage(allGames);
-
+    let currentGamesList = GAMES_JSON; 
+    addGamesToPage(currentGamesList);
 }
 
 // select each button in the "Our Games" section
@@ -183,11 +185,67 @@ const firstGameContainer = document.getElementById("first-game");
 const secondGameContainer = document.getElementById("second-game");
 
 const sortedGames =  GAMES_JSON.sort( (item1, item2) => {
-    return item2.pledged - item1.pledged;
+    return item2.pledged - item1.pledged; //b-a (desc)
 });
 
 // use destructuring and the spread operator to grab the first and second games
+let [first,second] = sortedGames;
 
 // create a new element to hold the name of the top pledge game, then append it to the correct element
+let topPledgeHeading = document.createElement('h2');
+topPledgeHeading.innerHTML = first.name;
+firstGameContainer.appendChild(topPledgeHeading);
 
 // do the same for the runner up item
+let secondPledgeHeading = document.createElement('h2');
+secondPledgeHeading.innerHTML = second.name;
+secondGameContainer.append(secondPledgeHeading);
+
+//adding custom sorting features
+
+function sortAZ(currentGamesList) { 
+    currentGamesList.sort(
+        function (a,b){
+            return a.name.localeCompare(b.name);
+        }
+    )
+    addGamesToPage(currentGamesList);
+}
+
+function sortZA(currentGamesList) { 
+    currentGamesList.sort(
+        function (a,b){
+            return b.name.localeCompare(a.name);
+        }
+    )
+    addGamesToPage(currentGamesList);
+}
+
+function sortBacker(currentGamesList) { 
+    currentGamesList.sort(
+        function (a,b){
+            return a.backers - b.backers;
+        }
+    )
+    addGamesToPage(currentGamesList);
+}
+
+const sortByAZ = document.getElementById("sort-az");
+const sortByZA = document.getElementById("sort-za");
+const sortByBacker = document.getElementById("sort-backers");
+
+sortByAZ.addEventListener("click", () => {
+    deleteChildElements(gamesContainer);
+    sortAZ(currentGamesList);
+});
+
+sortByZA.addEventListener("click", () => {
+    deleteChildElements(gamesContainer);
+    sortZA(currentGamesList);
+});
+
+sortByBacker.addEventListener("click", () => {
+    deleteChildElements(gamesContainer);
+    sortBacker(currentGamesList);
+});
+

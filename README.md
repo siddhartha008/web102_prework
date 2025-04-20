@@ -20,12 +20,12 @@ The following **optional** features are implemented:
 - Changed the UI elements such as background color, heading color, and hover color.
 - Added a Progress bar using html <progres> to showcase the funding progress and added indicators (In Progress and Goal Met) depending on if the goal is met or not.
 
-## Video Walkthrough
+## Video Walkthrough 
+
 
 Here's a walkthrough of implemented features:
+<img src='./assets/walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-<!-- <img src='https://imgur.com/a/sid-prework-ihfNtHS' title='Video Walkthrough' width='' alt='Video Walkthrough' /> -->
-![Video Walkthrough] 
 GIF created with GetKap (https://getkap.co/)
 
 ## Notes
